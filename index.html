@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AquaCampus | Smart Water Monitoring</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <div class="logo">💧</div>
+    <div>
+      <h1>AquaCampus</h1>
+      <p>Smart Campus Water Monitoring System</p>
+    </div>
+    <span class="badge">● Prototype Demo</span>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div>
+        <small>CAMPUS SUSTAINABILITY</small>
+        <h2>Water Monitoring Dashboard</h2>
+        <p>Report water wastage, track maintenance and review water usage.</p>
+      </div>
+      <button class="primary" id="jump">+ Report an Issue</button>
+    </section>
+
+    <div class="notice">
+      <strong>ⓘ Academic Prototype</strong>
+      <p>Reports and water usage values are sample data. No physical sensors are connected.</p>
+    </div>
+
+    <section class="stats">
+      <div class="card">
+        <span>Total Reports</span>
+        <b id="total">0</b>
+        <small>All recorded issues</small>
+      </div>
+      <div class="card">
+        <span>Pending Issues</span>
+        <b id="pending">0</b>
+        <small>Awaiting maintenance</small>
+      </div>
+      <div class="card">
+        <span>In Progress</span>
+        <b id="progress">0</b>
+        <small>Being addressed</small>
+      </div>
+      <div class="card">
+        <span>Resolved Issues</span>
+        <b id="resolved">0</b>
+        <small>Marked as fixed</small>
+      </div>
+    </section>
+
+    <section class="charts">
+      <article class="panel">
+        <h3>💧 Water Usage Analytics</h3>
+        <p>Sample daily campus consumption in litres</p>
+        <div class="chart">
+          <canvas id="waterChart"></canvas>
+        </div>
+        <small>Illustrative values, not actual campus measurements.</small>
+      </article>
+
+      <article class="panel">
+        <h3>Reported Issue Types</h3>
+        <p>Breakdown of current reports</p>
+        <div class="donut">
+          <canvas id="issueChart"></canvas>
+        </div>
+        <div class="legend">Leaking Tap · Tank Overflow · Other Issues</div>
+      </article>
+    </section>
+
+    <section class="lower">
+      <article class="panel" id="reportList">
+        <div class="heading">
+          <div>
+            <h3>Recent Reports</h3>
+            <p>Search issues and update maintenance status.</p>
+          </div>
+          <button class="secondary" id="reset">Reset Demo</button>
+        </div>
+
+        <div class="filters">
+          <label for="search">Search reports</label>
+          <input id="search" type="search" placeholder="Search issue or location...">
+
+          <label for="filter">Filter by status</label>
+          <select id="filter">
+            <option value="All">All statuses</option>
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Resolved">Resolved</option>
+          </select>
+        </div>
+
+        <div class="tablewrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Issue</th>
+                <th>Location</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Update</th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+        <p id="empty" hidden>No matching reports found.</p>
+      </article>
+
+      <article class="panel" id="formPanel">
+        <h3>Report Water Wastage</h3>
+        <p>Submit a new campus issue.</p>
+
+        <form id="form">
+          <label for="type">Issue Type *</label>
+          <select id="type" required>
+            <option value="">Choose an issue</option>
+            <option>Leaking tap</option>
+            <option>Tank overflow</option>
+            <option>Pipe leakage</option>
+            <option>Running water / open tap</option>
+            <option>Other</option>
+          </select>
+
+          <label for="location">Campus Location *</label>
+          <input id="location" maxlength="100"
+                 placeholder="e.g. Block A washroom" required>
+
+          <label for="description">Description *</label>
+          <textarea id="description" maxlength="300"
+                    placeholder="Describe the problem..." required></textarea>
+
+          <label for="reporter">Reported By (optional)</label>
+          <input id="reporter" maxlength="60"
+                 placeholder="Student or staff name">
+
+          <button class="primary" type="submit">Submit Report →</button>
+          <small>Reports are saved in this browser.</small>
+        </form>
+      </article>
+    </section>
+
+    <section class="panel recommendations">
+      <h3>🌱 Water-Saving Recommendations</h3>
+      <p>Practical actions for a sustainable campus.</p>
+
+      <div class="recs">
+        <div>
+          <b>🚰 Repair Leaking Taps</b>
+          <p>Report dripping taps promptly and prioritize repairs.</p>
+        </div>
+        <div>
+          <b>🛢️ Prevent Tank Overflow</b>
+          <p>Inspect overhead tanks and avoid unnecessary overflow.</p>
+        </div>
+        <div>
+          <b>📊 Review Water Usage</b>
+          <p>Monitor usage trends to identify unusual consumption.</p>
+        </div>
+        <div>
+          <b>🌿 Build Responsible Habits</b>
+          <p>Encourage everyone to close taps after use.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>AquaCampus · EVS Assignment · Every Drop Counts 💚</footer>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
